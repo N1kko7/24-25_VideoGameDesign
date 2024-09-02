@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://djaf6e67cvlnh"]
+[gd_scene load_steps=17 format=3 uid="uid://djaf6e67cvlnh"]
 
 [ext_resource type="PackedScene" uid="uid://ch0qut00fkqe5" path="res://Character.tscn" id="1_oa1oi"]
 [ext_resource type="Texture2D" uid="uid://dfekaolpf4myc" path="res://assets/tileset/Assets.png" id="2_ap3bx"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cf87eo0trklky" path="res://killzone.tscn" id="4_wi8at"]
 [ext_resource type="Texture2D" uid="uid://n0kcq2xfjp1c" path="res://assets/bg/Background_2.png" id="5_tkyed"]
 [ext_resource type="PackedScene" uid="uid://desi31726nesk" path="res://bee.tscn" id="7_ebije"]
+[ext_resource type="PackedScene" uid="uid://dq4jvwpk5tryi" path="res://boar.tscn" id="8_130ps"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hboux"]
 texture = ExtResource("2_ap3bx")
@@ -2091,4 +2092,8 @@ offset_left = -527.0
 offset_top = -130.0
 offset_right = 465.0
 offset_bottom = 462.0
+scale = Vector2(1.00704, 1)
 texture = ExtResource("5_tkyed")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("8_130ps")]
+position = Vector2(281, -18)

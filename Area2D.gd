@@ -5,8 +5,10 @@ extends Area2D
 
 
 func _on_body_entered(_body):
-	print("You died! -10 Social Credit Score")
-	timer.start()
+	if _body.is_in_group("Character"):
+		print("You died! -10 Social Credit Score")
+		timer.start()
+
 
 
 
