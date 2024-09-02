@@ -21,3 +21,4 @@ func _on_area_entered(area):
 func _on_animated_sprite_2d_animation_finished():
 	if $AnimatedSprite2D.animation == "Dead":
 		queue_free()
+ 
