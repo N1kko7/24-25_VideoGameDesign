@@ -53,12 +53,13 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _on_AnimatedSprite2D_animation_finished():
+func _on_animated_sprite_2d_animation_finished():
 	print("Animation finished: ", animated_sprite.animation)
 	if animated_sprite.animation == "Attack1":
 		collision_shape.disabled = true  # Disable the hitbox after the attack
 		is_attacking = false
 		handle_movement_animation()
+
 
 func handle_movement_animation():
 	var direction = Input.get_axis("left", "right")

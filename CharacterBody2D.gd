@@ -31,5 +31,5 @@ func _physics_process(delta):
 	else:
 		velocity.y += gravity
 	
-	move(1,-50)
+	move(1,20)
 	move_and_slide()
