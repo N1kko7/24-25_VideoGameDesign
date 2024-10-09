@@ -1,13 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://djaf6e67cvlnh"]
+[gd_scene load_steps=21 format=3 uid="uid://djaf6e67cvlnh"]
 
-[ext_resource type="PackedScene" uid="uid://ch0qut00fkqe5" path="res://Character.tscn" id="1_oa1oi"]
+[ext_resource type="PackedScene" uid="uid://ch0qut00fkqe5" path="res://assets/scenes/Character.tscn" id="1_oa1oi"]
 [ext_resource type="Texture2D" uid="uid://dfekaolpf4myc" path="res://assets/tileset/Assets.png" id="2_ap3bx"]
-[ext_resource type="PackedScene" uid="uid://c673hhngub0g4" path="res://coin.tscn" id="3_nkc2p"]
+[ext_resource type="PackedScene" uid="uid://c673hhngub0g4" path="res://assets/scenes/coin.tscn" id="3_nkc2p"]
 [ext_resource type="Texture2D" uid="uid://bfg2c65xj8udc" path="res://assets/tileset/Grassland.png" id="3_ujb3g"]
-[ext_resource type="PackedScene" uid="uid://cf87eo0trklky" path="res://killzone.tscn" id="4_wi8at"]
+[ext_resource type="PackedScene" uid="uid://cf87eo0trklky" path="res://assets/scenes/killzone.tscn" id="4_wi8at"]
 [ext_resource type="Texture2D" uid="uid://n0kcq2xfjp1c" path="res://assets/bg/Background_2.png" id="5_tkyed"]
-[ext_resource type="PackedScene" uid="uid://desi31726nesk" path="res://bee.tscn" id="7_ebije"]
-[ext_resource type="PackedScene" uid="uid://dq4jvwpk5tryi" path="res://boar.tscn" id="8_130ps"]
+[ext_resource type="PackedScene" uid="uid://desi31726nesk" path="res://assets/scenes/bee.tscn" id="7_ebije"]
+[ext_resource type="PackedScene" uid="uid://dq4jvwpk5tryi" path="res://assets/scenes/boar.tscn" id="8_130ps"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="9_t2e3q"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="10_cevxx"]
+[ext_resource type="Script" path="res://CanSeePlayer.gd" id="11_2qyna"]
+[ext_resource type="Script" path="res://ActionLeaf.gd" id="12_jq63j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hboux"]
 texture = ExtResource("2_ap3bx")
@@ -2020,7 +2024,7 @@ position = Vector2(-9, 130)
 
 [node name="Character" parent="." instance=ExtResource("1_oa1oi")]
 top_level = true
-position = Vector2(160, 168)
+position = Vector2(-121, 168)
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 zoom = Vector2(4, 4)
@@ -2083,17 +2087,49 @@ position = Vector2(12, -72)
 shape = SubResource("SegmentShape2D_82qdh")
 
 [node name="Bee" parent="." instance=ExtResource("7_ebije")]
-position = Vector2(465, 238)
+position = Vector2(41, 86)
 
 [node name="TextureRect" type="TextureRect" parent="."]
 light_mask = 0
 z_index = -3
-offset_left = -527.0
-offset_top = -130.0
-offset_right = 465.0
-offset_bottom = 462.0
+offset_left = -1319.0
+offset_top = -242.0
+offset_right = -327.0
+offset_bottom = 350.0
 scale = Vector2(1.00704, 1)
 texture = ExtResource("5_tkyed")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("8_130ps")]
-position = Vector2(281, -18)
+[node name="Boar" parent="." instance=ExtResource("8_130ps")]
+position = Vector2(-255, 78)
+
+[node name="BeehaveTree" type="Node" parent="Boar" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("9_t2e3q")
+blackboard = NodePath("@Node@32645")
+actor = NodePath("..")
+
+[node name="SequenceComposite" type="Node" parent="Boar/BeehaveTree"]
+script = ExtResource("10_cevxx")
+
+[node name="ConditionLeaf" type="Node" parent="Boar/BeehaveTree/SequenceComposite"]
+script = ExtResource("11_2qyna")
+
+[node name="ActionLeaf" type="Node" parent="Boar/BeehaveTree/SequenceComposite"]
+script = ExtResource("12_jq63j")
+
+[node name="SequenceComposite2" type="Node" parent="Boar/BeehaveTree"]
+script = ExtResource("10_cevxx")
+
+[node name="ConditionLeaf" type="Node" parent="Boar/BeehaveTree/SequenceComposite2"]
+script = ExtResource("11_2qyna")
+
+[node name="ActionLeaf" type="Node" parent="Boar/BeehaveTree/SequenceComposite2"]
+script = ExtResource("12_jq63j")
+
+[node name="SequenceComposite3" type="Node" parent="Boar/BeehaveTree"]
+script = ExtResource("10_cevxx")
+
+[node name="ConditionLeaf" type="Node" parent="Boar/BeehaveTree/SequenceComposite3"]
+script = ExtResource("11_2qyna")
+
+[node name="ActionLeaf" type="Node" parent="Boar/BeehaveTree/SequenceComposite3"]
+script = ExtResource("12_jq63j")
