@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://0q32lonn8urr"]
+
+[ext_resource type="Texture2D" uid="uid://cspyrd2gryc0i" path="res://winston.png" id="1_qrd27"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x10fj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_qrd27")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hx2hn"]
+size = Vector2(47, 54)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-7.5, 30)
+scale = Vector2(0.0155423, 0.0128968)
+sprite_frames = SubResource("SpriteFrames_x10fj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8.5, 33)
+shape = SubResource("RectangleShape2D_hx2hn")
